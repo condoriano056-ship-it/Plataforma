@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plataforma de Estudos de Proteção</title>
+<link rel="stylesheet" href="css/style.css?v=136">
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M6 8c5 0 7 3 8 6s3 4 5 4"/><path d="M6 12c3 0 4.5 1 5.5 3"/></svg>
+    Plataforma de Estudos de Proteção
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Seções">
+    <button class="tab" role="tab" id="tabbtn-home" data-tab="home" aria-selected="true" aria-controls="tab-home">Página inicial</button>
+    <button class="tab" role="tab" id="tabbtn-conc" data-tab="conc" aria-selected="false" aria-controls="tab-conc">Dados da Concessionária</button>
+    <button class="tab" role="tab" id="tabbtn-inst" data-tab="inst" aria-selected="false" aria-controls="tab-inst">Dados da instalação</button>
+    <button class="tab" role="tab" id="tabbtn-ajuste" data-tab="ajuste" aria-selected="false" aria-controls="tab-ajuste">Ordem de ajuste de proteção</button>
+    <button class="tab" role="tab" id="tabbtn-coord" data-tab="coord" aria-selected="false" aria-controls="tab-coord">Coordenograma</button>
+  </nav>
+</header>
+
+<!-- ===================== ABA: PÁGINA INICIAL ===================== -->
+<section class="view" id="tab-home" role="tabpanel" aria-labelledby="tabbtn-home">
+  <div class="home">
+    <div class="home-in wide">
+      <h1>Formulário de cadastro</h1>
+
+      <div class="home-cols">
+        <div class="home-left">
+          <section class="card" aria-labelledby="h-cliente">
+            <h2 id="h-cliente">Cliente</h2>
+            <div class="grid2" id="grp-cliente"></div>
+          </section>
+          <section class="card" aria-labelledby="h-contratada">
+            <h2 id="h-contratada">Empresa contratada</h2>
+            <div class="grid2" id="grp-contratada"></div>
+          </section>
+        </div>
+
+        <section class="card home-right" aria-labelledby="h-conc">
+          <h2 id="h-fin">Finalidade do estudo</h2>
+          <div class="conc-grid fin-grid" id="finGrp" role="radiogroup" aria-labelledby="h-fin"></div>
+          <h2 id="h-conc" class="h-sep">Concessionária</h2>
+          <p class="note" style="margin:0 0 12px">Clique para escolher a concessionária do projeto.</p>
+          <div class="conc-grid" id="concGrid" role="radiogroup" aria-labelledby="h-conc"></div>
+        </section>
+      </div>
+
+      <div class="home-actions">
+        <button class="btn pri" id="btnGoCoord" type="button">Ir para dados da concessionária →</button>
+        <span class="note" id="homeStatus"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABA: DADOS DA CONCESSIONÁRIA ===================== -->
+<section class="view" id="tab-conc" role="tabpanel" aria-labelledby="tabbtn-conc" hidden>
+  <div class="home">
+    <div class="home-in wide">
+      <header class="conc-head" id="concHead">
+        <div class="conc-logo" id="concLogo" role="img" aria-label="Logo da concessionária"></div>
+        <div class="premissas" aria-labelledby="h-prem">
+          <div class="prem-row">
+          <div class="prem-col">
+          <h2 class="prem-h" id="h-prem">Premissas do estudo</h2>
+          <div class="xl">
+            <label for="basekv">Tensão de base</label>
+            <div class="box"><input id="basekv" type="text" inputmode="decimal" autocomplete="off"><span class="u">kV</span></div>
+            <label for="baseS">Potência de base</label>
+            <div class="box"><input id="baseS" type="text" inputmode="decimal" autocomplete="off"><span class="u">MVA</span></div>
+            <label for="baseA" hidden>Corrente de base</label>
+            <div class="box dim" hidden><input id="baseA" type="text" readonly tabindex="-1" placeholder="calculada"><span class="u">A</span></div>
+          </div>
+          </div>
+          <div class="prem-modo">
+          <h2 class="prem-h" id="h-modo">Dados da rede para o estudo</h2>
+          <div class="seg" id="redeModo" role="radiogroup" aria-label="Dados da rede para o estudo">
+            <button class="btn" type="button" role="radio" data-modo="imp" aria-pressed="true" aria-checked="true">Impedâncias de sequência</button>
+            <button class="btn" type="button" role="radio" data-modo="icc" aria-pressed="false" aria-checked="false">Corrente de curto direta</button>
+          </div>
+          </div>
+          <div class="prem-modo">
+          <h2 class="prem-h" id="h-inr">Método da corrente de inrush</h2>
+          <div class="dd" id="inrushDD"></div>
+          </div>
+          </div>
+        </div>
+      </header>
+      <div class="conc-cols">
+        <div class="prot cprot" id="cprot"></div>
+        <div class="prot rede" id="rede"></div>
+      </div>
+
+      <section class="grp iccdef" aria-labelledby="h-iccdef">
+        <h3 class="grp-h" id="h-iccdef">Correntes de curto-circuito do estudo</h3>
+        <div class="func">
+          <p class="note" id="iccOrigem" style="margin:0 0 12px"></p>
+          <div class="iccgrid" id="iccGrid"></div>
+        </div>
+      </section>
+
+      <div class="home-actions">
+        <button class="btn pri" id="btnGoInst" type="button">Ir para dados da instalação →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABA: DADOS DA INSTALAÇÃO ===================== -->
+<section class="view" id="tab-inst" role="tabpanel" aria-labelledby="tabbtn-inst" hidden>
+  <div class="home">
+    <div class="home-in wide">
+      <section class="grp" aria-labelledby="h-inst">
+        <h3 class="grp-h" id="h-inst">Transformadores</h3>
+        <div class="func">
+          <div class="ntr">
+            <label for="nTrafos">Quantidade de transformadores</label>
+            <div class="ntr-ctl">
+              <button type="button" class="fbtn sm" id="nTrafosMenos" aria-label="Diminuir quantidade">−</button>
+              <div class="box"><input id="nTrafos" type="text" inputmode="numeric" autocomplete="off" value="1"></div>
+              <button type="button" class="fbtn sm" id="nTrafosMais" aria-label="Aumentar quantidade">+</button>
+            </div>
+            <span class="note">As colunas marcadas como automáticas são calculadas a partir dos dados informados.</span>
+          </div>
+          <div id="instTrafos"></div>
+        </div>
+      </section>
+      <section class="grp" aria-labelledby="h-dem">
+        <h3 class="grp-h" id="h-dem">Demanda e geração</h3>
+        <div class="func" id="instDem"></div>
+      </section>
+      <section class="grp" aria-labelledby="h-tc">
+        <h3 class="grp-h" id="h-tc">Dimensionamento do TC de proteção</h3>
+        <div class="func" id="instTC"></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABA: ORDEM DE AJUSTE DE PROTEÇÃO ===================== -->
+<section class="view" id="tab-ajuste" role="tabpanel" aria-labelledby="tabbtn-ajuste" hidden>
+  <div class="app ajgrid">
+    <!-- Metade esquerda: área de cálculo (só aparecem as funções habilitadas) -->
+    <div class="datacol" id="ajcalc">
+      <h2 class="prot-title">Cálculo</h2>
+      <div class="calc" id="calc"></div>
+    </div>
+    <!-- Metade direita: escolha das funções e ajustes -->
+    <div class="datacol ajfun" id="ajfun">
+      <h2 class="prot-title">Ordem de ajuste de proteção</h2>
+      <div class="prot" id="prot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABA: COORDENOGRAMA ===================== -->
+<section class="view" id="tab-coord" role="tabpanel" aria-labelledby="tabbtn-coord" hidden>
+  <div class="app" id="app">
+
+    <!-- Metade esquerda: gráfico -->
+    <div class="chartcol">
+      <div class="ctools">
+        <div class="seg" id="viewSeg" role="group" aria-label="Visão do gráfico">
+          <button class="btn" type="button" data-view="fase" aria-pressed="true">Fase</button>
+          <button class="btn" type="button" data-view="neutro" aria-pressed="false">Neutro</button>
+        </div>
+        <button class="btn" id="btnUndo" type="button" title="Desfazer (Ctrl+Z)">↶ Desfazer</button>
+        <button class="btn" id="btnRedo" type="button" title="Refazer (Ctrl+Y)">↷ Refazer</button>
+        <button class="btn" id="btnReset" type="button" title="Duplo clique no gráfico também restaura">Restaurar eixos</button>
+        <button class="btn" id="btnPng" type="button">Exportar PNG</button>
+        <details class="more" id="more">
+          <summary class="btn">Mais opções</summary>
+          <div class="pop">
+            <label class="fld"><span>Nome do projeto</span><input id="pname" type="text" autocomplete="off"></label>
+            <div class="grid2">
+              <label class="fld chk" for="legend"><input id="legend" type="checkbox"><span>Legenda no gráfico</span></label>
+              <label class="fld chk full" for="showall"><input id="showall" type="checkbox"><span>Mostrar também as curvas individuais (tracejado fino)</span></label>
+            </div>
+            <div class="grid2">
+              <label class="fld"><span>I mín (A)</span><input id="imin" type="number" step="any"></label>
+              <label class="fld"><span>I máx (A)</span><input id="imax" type="number" step="any"></label>
+              <label class="fld"><span>t mín (s)</span><input id="tmin" type="number" step="any"></label>
+              <label class="fld"><span>t máx (s)</span><input id="tmax" type="number" step="any"></label>
+            </div>
+            <textarea id="json" spellcheck="false" placeholder="O projeto em JSON aparece aqui. Cole um JSON e use Carregar."></textarea>
+            <div class="row">
+              <button class="btn sm" id="btnCopy" type="button">Copiar JSON</button>
+              <button class="btn sm" id="btnLoad" type="button">Carregar JSON</button>
+              <button class="btn sm" id="btnFile" type="button">Abrir arquivo…</button>
+              <button class="btn sm" id="btnSaveFile" type="button">Baixar .json</button>
+              <button class="btn sm" id="btnSvg" type="button">Exportar SVG</button>
+              <input id="fileIn" type="file" accept=".json,application/json" hidden>
+            </div>
+            <div class="row">
+              <button class="btn sm" id="btnSample" type="button">Restaurar valores de exemplo</button>
+              <button class="btn sm ghost" id="btnClear" type="button">Zerar funções</button>
+            </div>
+          </div>
+        </details>
+        <span id="status" role="status"></span>
+      </div>
+      <h2 class="ctitle" id="ctitle">Coordenograma de fase</h2>
+      <div class="chartwrap" id="wrap">
+        <svg id="chart" role="img" aria-label="Coordenograma tempo × corrente"></svg>
+        <div id="tip"></div>
+      </div>
+      <div class="cfilter" id="cfilter" hidden></div>
+      <p class="hint">Roda do mouse: zoom · arrastar: mover · duplo clique: restaurar · passe o mouse para ler o tempo de cada curva</p>
+    </div>
+
+    <!-- Metade direita: resumo das funções do cliente (os ajustes ficam na aba Ordem de ajuste de proteção) -->
+    <aside class="datacol" aria-label="Relatório do projeto">
+      <div class="prot" id="resumo"></div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- Scripts clássicos (sem módulos) para funcionar abrindo o arquivo direto no navegador. A ordem importa. -->
+<script src="js/util.js?v=136"></script>
+<script src="js/curves.js?v=136"></script>
+<script src="js/funcoes.js?v=136"></script>
+<script src="js/state.js?v=136"></script>
+<script src="js/chart.js?v=136"></script>
+<script src="js/ui.js?v=136"></script>
+<script src="js/protecao.js?v=136"></script>
+<script src="js/inrush.js?v=136"></script>
+<script src="js/rede.js?v=136"></script>
+<script src="js/home.js?v=136"></script>
+<script src="js/instalacao.js?v=136"></script>
+<script src="js/tc.js?v=136"></script>
+<script src="js/recom.js?v=136"></script>
+<script src="js/direcional.js?v=136"></script>
+<script src="js/resumo.js?v=136"></script>
+<script src="js/relatorio.js?v=136"></script>
+<script src="js/app.js?v=136"></script>
+</body>
+</html>
