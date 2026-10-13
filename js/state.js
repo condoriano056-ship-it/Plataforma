@@ -1,7 +1,7 @@
 /* state.js — estado do projeto (S), persistência local e histórico (desfazer/refazer) */
 "use strict";
 
-const STORE = "coordenograma.v3";
+const STORE = "coordenograma.v4";      // v4: projeto inicial em branco (descarta dados salvos de versões anteriores)
 const AXES0 = { imin: 1, imax: 100000, tmin: 0.01, tmax: 100 };      // eixos padrão: corrente de 1 A a 100 kA, tempo de 0,01 s a 100 s
 const AXES_ANTIGO = { imin: 10, imax: 100000, tmin: 0.01, tmax: 1000 };
 let S = null;   // projeto atual: { name, baseKV, axes, legend, info:{cliente,contratada,conc}, cliente:{funcs}, devices:[] }
@@ -13,9 +13,9 @@ const blankInfo = () => ({ cliente: PARTY0(), contratada: PARTY0(), conc: "enel"
 
 function blank(){
   // "devices" fica reservado para a fase da concessionária (relé, disjuntor, transformador...), ainda sem interface
-  return { name: "Novo projeto", baseKV: 13.8, baseS: null, axes: { ...AXES0 }, legend: true, showAll: false, vis: {}, view: "fase", info: blankInfo(), cliente: clienteExample(), concProt: clienteEmpty(), rede: redeBlank(), trechos: [trechoBlank()], rf: 40, zUnit: "ohm", redeModo: "imp", inrushMetodo: null, nTrafos: 1, trafos: [trafoBlank()], tc: tcBlank(), dem: demNormalize(), mult: {}, mao: {}, mAuto: {}, devices: [] };
+  return { name: "", baseKV: null, baseS: null, axes: { ...AXES0 }, legend: true, showAll: false, vis: {}, view: "fase", info: blankInfo(), cliente: clienteEmpty(), concProt: clienteEmpty(), rede: redeBlank(), trechos: [trechoBlank()], rf: 40, zUnit: "ohm", redeModo: "imp", inrushMetodo: null, nTrafos: 1, trafos: [trafoBlank()], tc: tcBlank(), dem: demNormalize(), mult: {}, mao: {}, mAuto: {}, devices: [] };
 }
-const sample = () => Object.assign(blank(), { name: "Projeto exemplo" });
+const sample = () => blank();
 
 // Completa campos que faltam (projetos antigos / JSON colado)
 function normalize(j){

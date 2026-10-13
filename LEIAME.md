@@ -29,6 +29,27 @@ Depois de editar qualquer arquivo, salve e aperte F5 no navegador. O projeto em 
 - **Incluir campos no cadastro:** lista `INFO_FIELDS` em `js/home.js` e o modelo `PARTY0` em `js/state.js`.
 - **Criar uma nova aba:** instruções no topo de `js/app.js`.
 
+## Imagens (logos e figuras)
+
+Coloque os arquivos na pasta `img/` com estes nomes (aceita .png, .svg, .jpg, .jpeg ou .webp) e aperte Ctrl+F5:
+`logo-enel`, `logo-cpfl`, `logo-energisa`, `logo-neoenergia` (concessionárias) e `finalidade-consumo`, `finalidade-consumo_geracao`, `finalidade-geracao` (finalidade do estudo).
+Para outra concessionária, o nome é `logo-<id>` (o id é o primeiro item de `CONCESSIONARIAS` em `js/home.js`).
+
 ## Atalhos
 
 Roda do mouse: zoom · arrastar: mover · duplo clique: restaurar eixos · Ctrl+Z / Ctrl+Y: desfazer / refazer.
+
+## Identidade visual (ESI)
+- Paleta: azul-marinho #0F2747 e azul vivo #1D68EE (tokens no início de `css/style.css`).
+- Logos em `img/logo-esi-cor.png`, `img/logo-esi-branco.png`, `img/marca-esi-*.png`; cópias embutidas em `js/logo.js` (usadas no cabeçalho, rodapé, janela "Sobre" e capa do relatório).
+
+## Login (login.html)
+A tela de login usa o Firebase Authentication (gratuito). Enquanto `js/auth-config.js` estiver com `apiKey: ""`, o login fica desligado e a plataforma abre direto.
+
+Para ativar:
+1. Em https://console.firebase.google.com crie um projeto → **Authentication → Começar → E-mail/senha** (ativar).
+2. **Authentication → Configurações → Ações do usuário**: desmarque **"Ativar criação (cadastro)"**, para que ninguém crie conta sozinho.
+3. **Authentication → Usuários → Adicionar usuário**: cadastre e-mail e senha de quem pode entrar.
+4. **Configurações do projeto → Geral → Chave de API da Web**: copie e cole em `js/auth-config.js`.
+5. **Authentication → Configurações → Domínios autorizados**: inclua o endereço do GitHub Pages (usuario.github.io).
+Lembre: o login controla o acesso à tela; o código-fonte do repositório público continua visível. Repositório privado se precisar esconder o código.

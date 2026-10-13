@@ -4,15 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plataforma de Estudos de Proteção</title>
-<link rel="stylesheet" href="css/style.css?v=136">
+<meta name="description" content="Plataforma de estudos de proteção e coordenograma — ESI Engenharia de Soluções Inteligentes.">
+<meta name="theme-color" content="#0F2747">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23fff'/%3E%3Crect x='5' y='6' width='22' height='5' fill='%230F2747'/%3E%3Crect x='5' y='13.5' width='19' height='5' fill='%230F2747'/%3E%3Crect x='5' y='21' width='22' height='5' fill='%231D68EE'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css?v=140">
+<script src="js/auth-config.js?v=140"></script>
+<script>/* login ativo e sem sessão: vai direto para a tela de entrada, sem mostrar a plataforma */
+(function(){var c=window.AUTH_CONFIG;if(!c||!c.apiKey)return;var ok=false;try{ok=!!(sessionStorage.getItem("esi.sessao")||localStorage.getItem("esi.sessao"));}catch(e){}
+if(!ok)location.replace("login.html");}());</script>
 </head>
-<body>
+<body data-protegida>
 
 <header class="site">
-  <div class="brand">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M6 8c5 0 7 3 8 6s3 4 5 4"/><path d="M6 12c3 0 4.5 1 5.5 3"/></svg>
-    Plataforma de Estudos de Proteção
-  </div>
+  <a class="brand" href="#" data-tab="home" aria-label="ESI — Plataforma de Estudos de Proteção">
+    <img id="hdrLogo" alt="ESI" src="img/logo-esi-cor.png">
+    <span class="bt"><b>Plataforma de Estudos de Proteção</b><small>Coordenograma e ordem de ajuste</small></span>
+  </a>
   <nav class="tabs" role="tablist" aria-label="Seções">
     <button class="tab" role="tab" id="tabbtn-home" data-tab="home" aria-selected="true" aria-controls="tab-home">Página inicial</button>
     <button class="tab" role="tab" id="tabbtn-conc" data-tab="conc" aria-selected="false" aria-controls="tab-conc">Dados da Concessionária</button>
@@ -27,6 +34,7 @@
   <div class="home">
     <div class="home-in wide">
       <h1>Formulário de cadastro</h1>
+      <p class="lead">Preencha os dados do cliente, da empresa contratada, a finalidade e a concessionária para iniciar o estudo de proteção e coordenação.</p>
 
       <div class="home-cols">
         <div class="home-left">
@@ -220,23 +228,61 @@
   </div>
 </section>
 
+<!-- ===================== RODAPÉ ===================== -->
+<footer class="sitefoot">
+  <div class="sf-in">
+    <div class="sf-brand">
+      <img id="ftLogo" alt="ESI — Engenharia de Soluções Inteligentes" src="img/logo-esi-branco.png">
+      <span>Estudos de proteção, seletividade e ordem de ajuste de relés.</span>
+    </div>
+    <nav class="sf-nav" aria-label="Atalhos">
+      <a href="#" data-tab="home">Página inicial</a>
+      <a href="#" data-tab="conc">Concessionária</a>
+      <a href="#" data-tab="inst">Instalação</a>
+      <a href="#" data-tab="ajuste">Ordem de ajuste</a>
+      <a href="#" data-tab="coord">Coordenograma</a>
+      <button type="button" id="btnSobre">Sobre</button>
+      <span id="userbox" hidden><span class="ub-mail"></span> · <button type="button">Sair</button></span>
+    </nav>
+    <div class="sf-copy">© <span id="ftAno">2026</span> ESI — Engenharia de Soluções Inteligentes<br>Os dados ficam salvos somente neste navegador.</div>
+  </div>
+</footer>
+
+<dialog class="sobre" id="dlgSobre" aria-labelledby="sobreH">
+  <div class="sobre-in">
+    <img id="sbLogo" alt="ESI" src="img/logo-esi-cor.png">
+    <h2 id="sobreH">Plataforma de Estudos de Proteção</h2>
+    <p>Ferramenta da ESI para elaborar estudos de proteção de instalações conectadas à rede da concessionária.</p>
+    <ul>
+      <li>Cadastro do cliente, da concessionária e da instalação (transformadores, demanda, geração e TCs).</li>
+      <li>Ordem de ajuste das funções de proteção, com os cálculos e a representação da função 67.</li>
+      <li>Coordenograma tempo × corrente interativo de fase e neutro.</li>
+      <li>Relatório do projeto com capa, resumos, ordem de ajuste e gráficos em alta resolução.</li>
+    </ul>
+    <p class="note">Os valores calculados são apoio ao estudo e devem ser conferidos pelo engenheiro responsável.</p>
+    <div class="row"><button class="btn pri" id="btnSobreOk" type="button">Fechar</button></div>
+  </div>
+</dialog>
+
 <!-- Scripts clássicos (sem módulos) para funcionar abrindo o arquivo direto no navegador. A ordem importa. -->
-<script src="js/util.js?v=136"></script>
-<script src="js/curves.js?v=136"></script>
-<script src="js/funcoes.js?v=136"></script>
-<script src="js/state.js?v=136"></script>
-<script src="js/chart.js?v=136"></script>
-<script src="js/ui.js?v=136"></script>
-<script src="js/protecao.js?v=136"></script>
-<script src="js/inrush.js?v=136"></script>
-<script src="js/rede.js?v=136"></script>
-<script src="js/home.js?v=136"></script>
-<script src="js/instalacao.js?v=136"></script>
-<script src="js/tc.js?v=136"></script>
-<script src="js/recom.js?v=136"></script>
-<script src="js/direcional.js?v=136"></script>
-<script src="js/resumo.js?v=136"></script>
-<script src="js/relatorio.js?v=136"></script>
-<script src="js/app.js?v=136"></script>
+<script src="js/logo.js?v=140"></script>
+<script src="js/auth.js?v=140"></script>
+<script src="js/util.js?v=140"></script>
+<script src="js/curves.js?v=140"></script>
+<script src="js/funcoes.js?v=140"></script>
+<script src="js/state.js?v=140"></script>
+<script src="js/chart.js?v=140"></script>
+<script src="js/ui.js?v=140"></script>
+<script src="js/protecao.js?v=140"></script>
+<script src="js/inrush.js?v=140"></script>
+<script src="js/rede.js?v=140"></script>
+<script src="js/home.js?v=140"></script>
+<script src="js/instalacao.js?v=140"></script>
+<script src="js/tc.js?v=140"></script>
+<script src="js/recom.js?v=140"></script>
+<script src="js/direcional.js?v=140"></script>
+<script src="js/resumo.js?v=140"></script>
+<script src="js/relatorio.js?v=140"></script>
+<script src="js/app.js?v=140"></script>
 </body>
 </html>

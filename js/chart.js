@@ -150,7 +150,7 @@ function render(){
   });
   out.push(`</g>`);
   out.push(`<rect x="${M.l}" y="${M.t}" width="${PW}" height="${PH}" fill="none" stroke="${ink}" stroke-width="1.2"/>`);
-  out.push(`<text x="${M.l + PW / 2}" y="${H - 8}" text-anchor="middle" font-size="12" fill="${ink}">Corrente (A) · base ${ptbr(S.baseKV)} kV</text>`);
+  out.push(`<text x="${M.l + PW / 2}" y="${H - 8}" text-anchor="middle" font-size="12" fill="${ink}">Corrente (A)${S.baseKV > 0 ? " · base " + ptbr(S.baseKV) + " kV" : ""}</text>`);
   out.push(`<text transform="translate(15 ${M.t + PH / 2}) rotate(-90)" text-anchor="middle" font-size="12" fill="${ink}">Tempo (s)</text>`);
   if (!MODEL_CACHE.length) out.push(`<text x="${M.l + PW / 2}" y="${M.t + PH / 2}" text-anchor="middle" font-size="13" fill="${tok("--muted")}">${ALL_MODELS.length ? "Todas as curvas estão ocultas. Use o filtro abaixo do gráfico." : "Nenhuma função desta visão está habilitada ou preenchida."}</text>`);
   // 6) legenda

@@ -7,7 +7,7 @@
    O comprimento dos fasores segue escala logarítmica (as correntes diferem em ordens de grandeza). S.dirSentido: "ccw" (padrão, como na figura de referência) ou "cw". */
 "use strict";
 
-const DIR_COR = { icc3: "#B42318", icc2: "#C2650A", carga: "#1F77B4", ger: "#7C3AED", pol: "#0B2545", mta: "#0B2545" };
+const DIR_COR = { icc3: "#B42318", icc2: "#C2650A", carga: "#1F77B4", ger: "#7C3AED", pol: "#0F2747", mta: "#0F2747" };
 
 function dirFasores(){
   const v = typeof iccEstudo === "function" ? iccEstudo() : {}, D = demCalc(), xr = typeof xrRede === "function" ? xrRede() : null;
@@ -61,7 +61,7 @@ function dirDiagrama(stKey){
   }
   o += `<circle cx="${CX}" cy="${CY}" r="${RD}" fill="none" stroke="#555" stroke-width="1.2"/>`;
   // anéis de pickup (corrente abaixo do anel não atua, mesmo dentro da região de operação)
-  if (st.ip > 0){ const r = rad(st.ip); o += `<circle cx="${CX}" cy="${CY}" r="${f1(r)}" fill="none" stroke="#0B2545" stroke-width="1.2" stroke-dasharray="2 3"/>`;
+  if (st.ip > 0){ const r = rad(st.ip); o += `<circle cx="${CX}" cy="${CY}" r="${f1(r)}" fill="none" stroke="#0F2747" stroke-width="1.2" stroke-dasharray="2 3"/>`;
     const [tx, ty] = P(op - 90 + 16, r); o += `<text x="${f1(tx)}" y="${f1(ty)}" class="dir-s" text-anchor="middle">Ip ${fmtN(st.ip)} A</text>`; }
   // eixo do MTA (tracejado, atravessando o centro) e arco do ângulo
   const [m0x, m0y] = P(mta, RD - 4), [m1x, m1y] = P(mta + 180, RD - 4);

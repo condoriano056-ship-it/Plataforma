@@ -385,7 +385,7 @@ function ansiModels(group){
          pts: L.map(o => ({ I: o.I, t: T_ANSI, label: o.id + " · " + nome + " " + ptbr(Math.round(o.I).toString()) + " A", vert: true })) } }];
 }
 function clienteModels(group){
-  return protModels(group, { k: "c", C: S.cliente, label: "Cliente", resPre: "Cliente · ", resColor: "#0B2545" })
+  return protModels(group, { k: "c", C: S.cliente, label: "Cliente", resPre: "Cliente · ", resColor: "#0F2747" })
     .concat(protModels(group, { k: "k", C: S.concProt, label: "Concessionária", colors: CONC_COLORS, resPre: "Concessionária · ", resColor: "#C2185B", dash: "9 5", w: 2.4 }))
     .concat(iccModels(group)).concat(inrushModels(group)).concat(ansiModels(group));
 }

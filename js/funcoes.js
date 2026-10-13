@@ -24,7 +24,7 @@ const tensaoSets = () => [
 
 const FUNCS = [
   { id: "51",   name: "Sobrecorrente temporizada de Fase",  curve: "oc",   group: "fase",   colors: { s1: "#D62728", s2: "#FF7F0E" }, sets: ocSets() },
-  { id: "50",   name: "Sobrecorrente instantânea de Fase",  curve: "inst", group: "fase",   colors: { m: "#0B2545" },
+  { id: "50",   name: "Sobrecorrente instantânea de Fase",  curve: "inst", group: "fase",   colors: { m: "#0F2747" },
     sets: [{ key: "m", fields: [NUM("ip", "Instan", "A"), NUM("dial", "Dial", "s")] }] },
   { id: "51N",  name: "Sobrecorrente temporizada de Neutro", curve: "oc",  group: "neutro", colors: { s1: "#2CA02C", s2: "#9467BD" }, sets: ocSets() },
   { id: "50N",  name: "Sobrecorrente instantânea de Neutro", curve: "inst", group: "neutro", colors: { m: "#8C564B" },
@@ -81,7 +81,7 @@ function clienteExample(){                                     // valores da pla
 }
 // Completa campos que faltam e converte o formato antigo (f51 / f50) para o novo (funcs)
 function normalizeCliente(jc, base){
-  jc = jc || {}; base = base || clienteExample();
+  jc = jc || {}; base = base || clienteEmpty();
   const old = jc.funcs || {}, out = { funcs: {} };
   FUNCS.forEach(def => {
     const src = Object.assign({}, old[def.id] || {}); if (def.id === "67" && src.m && !src.s1) src.s1 = src.m;

@@ -55,7 +55,7 @@ function rlCapa(){
   const hoje = new Date().toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
   const bloco = (t, p) => `<div class="cb"><h3>${t}</h3>${rlKV([["Nome / Razão social", RL_TXT(p.nome)], ["Endereço", RL_TXT(p.endereco)], ["CPF / CNPJ", RL_TXT(p.doc)], ["E-mail", RL_TXT(p.email)], ["Telefone", RL_TXT(p.tel)]])}</div>`;
   return `<section class="capa">
-    <div class="capa-top"><p class="kicker">Estudo de proteção e coordenação</p><h1>${RL_TXT(S.name)}</h1><p class="sub">Relatório do projeto · ${esc(hoje)}</p></div>
+    <div class="capa-top"><img class="capa-logo" src="${ESI_LOGO.cor}" alt="ESI — Engenharia de Soluções Inteligentes"><p class="kicker">Estudo de proteção e coordenação</p><h1>${RL_TXT(S.name)}</h1><p class="sub">Relatório do projeto · ${esc(hoje)}</p></div>
     <div class="capa-mid">${bloco("Cliente", c)}${bloco("Empresa responsável pelo estudo", e)}</div>
     <div class="capa-bot">${rlKV([["Concessionária", esc(conc)], ["Finalidade do estudo", esc(RL_LISTA_FIN[S.info.fin] || "—")], ["Tensão de base", RL_N(S.baseKV) + " kV"]])}</div>
   </section>`;
@@ -139,9 +139,9 @@ async function rlGraficos(){
 }
 
 const RL_CSS = `
-:root{--p1:#9cbbc7;--p2:#b5ccd5;--p3:#cedde3;--p4:#e6eef1;--panel:#fff;--ink:#000;--muted:#3F4F57;--anchor:#0B2545;--edge:#9cbbc7}
+:root{--p1:#9DBBF2;--p2:#BFD3F7;--p3:#D7E3FA;--p4:#EAF1FD;--panel:#fff;--ink:#000;--muted:#44536D;--anchor:#0F2747;--edge:#9DBBF2}
 .fr{display:inline-flex;flex-direction:column;align-items:stretch;vertical-align:middle;margin:0 2px;text-align:center}.fr>span:first-child{border-bottom:1px solid #000;padding:0 4px 1px}.fr>span:last-child{padding:1px 4px 0}
-.form{font-size:13px}td small{color:#3F4F57}.tcfig{max-width:150mm;margin:8px auto 0;page-break-inside:avoid}
+.form{font-size:13px}td small{color:#44536D}.tcfig{max-width:150mm;margin:8px auto 0;page-break-inside:avoid}
 .tcsvg{display:block;width:100%;height:auto}
 .tcsvg .dg-core{fill:none;stroke:var(--p3);stroke-width:36}
 .tcsvg .dg-ring{fill:none;stroke:var(--p1);stroke-width:1.5}
@@ -166,29 +166,29 @@ const RL_CSS = `
 .tcsvg .dg-d{fill:none;stroke:var(--anchor);stroke-width:1.4;stroke-dasharray:3 3}
 
 @page{size:A4;margin:14mm}@page land{size:A4 landscape;margin:10mm}
-*{box-sizing:border-box}html{background:#e6eef1}
+*{box-sizing:border-box}html{background:#EAF1FD}
 body{margin:0 auto;max-width:210mm;background:#fff;color:#000;font:12px/1.45 Arial,Helvetica,sans-serif;padding:0 14mm}
-.bar{position:sticky;top:0;z-index:5;display:flex;gap:8px;align-items:center;justify-content:flex-end;background:#0B2545;margin:0 -14mm;padding:8px 14mm}
-.bar span{color:#fff;margin-right:auto;font-weight:700}.bar button{background:#fff;color:#0B2545;border:0;border-radius:6px;padding:7px 12px;font:700 12px Arial;cursor:pointer}
-h1,h2,h3,h4{color:#0B2545;margin:0}
+.bar{position:sticky;top:0;z-index:5;display:flex;gap:8px;align-items:center;justify-content:flex-end;background:#0F2747;margin:0 -14mm;padding:8px 14mm}
+.bar span{color:#fff;margin-right:auto;font-weight:700}.bar button{background:#fff;color:#0F2747;border:0;border-radius:6px;padding:7px 12px;font:700 12px Arial;cursor:pointer}
+h1,h2,h3,h4{color:#0F2747;margin:0}
 .capa{min-height:260mm;display:flex;flex-direction:column;justify-content:space-between;padding:18mm 0 6mm;page-break-after:always}
-.kicker{margin:0 0 8px;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:#3F4F57}
-.capa h1{font-size:34px;line-height:1.15;border-bottom:4px solid #9cbbc7;padding-bottom:14px}.sub{color:#3F4F57;margin:10px 0 0}
+.kicker{margin:0 0 8px;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:#44536D}
+.capa-logo{height:26mm;width:auto;display:block;margin:0 0 14mm -2mm}.capa h1{font-size:34px;line-height:1.15;border-bottom:4px solid #1D68EE;padding-bottom:14px}.sub{color:#44536D;margin:10px 0 0}
 .capa-mid{display:grid;gap:22px}.cb h3{font-size:14px;margin-bottom:6px}
 table{width:100%;border-collapse:collapse;margin:8px 0 6px}
-th,td{border:1px solid #cedde3;padding:5px 7px;text-align:left;vertical-align:top;font-size:11.5px}
-thead th{background:#e6eef1;color:#0B2545}
-.kv th{width:42%;background:#e6eef1;color:#0B2545;font-weight:700}
+th,td{border:1px solid #D7E3FA;padding:5px 7px;text-align:left;vertical-align:top;font-size:11.5px}
+thead th{background:#EAF1FD;color:#0F2747}
+.kv th{width:42%;background:#EAF1FD;color:#0F2747;font-weight:700}
 .num td:not(:first-child),.num th:not(:first-child){text-align:right}.trafos th,.trafos td{font-size:10px;padding:4px 4px}
-.sec{page-break-before:always}.sec h2{font-size:20px;display:flex;gap:10px;align-items:center;border-bottom:2px solid #9cbbc7;padding-bottom:8px;margin-bottom:10px}
-.sec h2 span{background:#0B2545;color:#fff;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
+.sec{page-break-before:always}.sec h2{font-size:20px;display:flex;gap:10px;align-items:center;border-bottom:2px solid #9DBBF2;padding-bottom:8px;margin-bottom:10px}
+.sec h2 span{background:#0F2747;color:#fff;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
 .sec h3{font-size:14px;margin:16px 0 4px}.fn{page-break-inside:avoid;margin:10px 0}.fn h4{font-size:12.5px}
-.nota{color:#3F4F57;font-size:11px;margin:4px 0}.vazio{color:#3F4F57}
+.nota{color:#44536D;font-size:11px;margin:4px 0}.vazio{color:#44536D}
 .land{page:land;page-break-before:always;text-align:center}.land h2{font-size:18px;margin:0 0 6px;text-align:left}
-.land img{width:100%;height:auto;display:block;border:1px solid #cedde3}
-.land p{font-size:11px;color:#3F4F57;text-align:left}
+.land img{width:100%;height:auto;display:block;border:1px solid #D7E3FA}
+.land p{font-size:11px;color:#44536D;text-align:left}
 @media print{html{background:#fff}body{max-width:none;padding:0}.bar{display:none}}
-@media screen{body{box-shadow:0 0 14px rgba(11,37,69,.18);margin-bottom:24px}.land{margin-top:30px}}
+@media screen{body{box-shadow:0 0 14px rgba(15,39,71,.18);margin-bottom:24px}.land{margin-top:30px}}
 `;
 
 function relatorioHTML(graficos, comBarra){

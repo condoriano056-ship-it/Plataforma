@@ -37,7 +37,7 @@ const TR_COLS = [
 ];
 
 // tensão primária começa na tensão de base do estudo
-const trafoBlank = () => ({ nome: "", kva: null, v1: typeof S === "object" && S && S.baseKV > 0 ? S.baseKV : 13.8,  v2: null, lig: "Dyn1", ref: "oleo", z: null, b: null });
+const trafoBlank = () => ({ nome: "", kva: null, v1: typeof S === "object" && S && S.baseKV > 0 ? S.baseKV : null,  v2: null, lig: "Dyn1", ref: "oleo", z: null, b: null });
 const trafoNorm = t => {
   const o = trafoBlank();
   o.nome = typeof (t && t.nome) === "string" ? t.nome : "";

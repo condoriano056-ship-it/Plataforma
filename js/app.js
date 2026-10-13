@@ -17,9 +17,16 @@ function showTab(name){
   if (name === "ajuste" && S && typeof renderCalc === "function") renderCalc();
   if (name === "coord" && S) render();       // o gráfico só mede o tamanho quando está visível
 }
-document.querySelector(".tabs").addEventListener("click", e => {
-  const b = e.target.closest("[data-tab]"); if (b) showTab(b.dataset.tab);
+document.addEventListener("click", e => {            // abas, logo do cabeçalho e atalhos do rodapé
+  const b = e.target.closest("[data-tab]"); if (!b) return;
+  e.preventDefault(); showTab(b.dataset.tab); window.scrollTo(0, 0);
 });
+/* logos embutidas (logo.js) funcionam mesmo se a pasta img/ não estiver junto */
+[["hdrLogo", "marcaCor"], ["ftLogo", "branco"], ["sbLogo", "cor"]].forEach(([id, k]) => { const el = document.getElementById(id); if (el && typeof ESI_LOGO !== "undefined") el.src = ESI_LOGO[k]; });
+$("#ftAno").textContent = new Date().getFullYear();
+$("#btnSobre").addEventListener("click", () => { const d = $("#dlgSobre"); if (d.showModal) d.showModal(); else d.setAttribute("open", ""); });
+$("#btnSobreOk").addEventListener("click", () => $("#dlgSobre").close());
+$("#dlgSobre").addEventListener("click", e => { if (e.target.id === "dlgSobre") e.target.close(); });
 
 function renderConc(){
   const sel = S && S.info && S.info.conc, par = CONCESSIONARIAS.find(x => x[0] === sel), c = par && par[1];
@@ -52,5 +59,4 @@ const _saved = loadStore();
 S = _saved ? normalize(_saved) : sample();
 fullRender();
 histInit();
-let _tab = "home"; try { _tab = localStorage.getItem("coordenograma.tab") || "home"; } catch (e) {}
-showTab(_tab);
+showTab("home");                       // sempre abre na primeira página
