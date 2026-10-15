@@ -52,6 +52,4 @@ document.addEventListener("DOMContentLoaded", () => {
   const bloquear = () => location.replace("login.html");
   if (!AUTH.sessao()) return bloquear();
   AUTH.validar().then(ok => { if (!ok) AUTH.sair(); });
-  const s = AUTH.sessao(), u = document.getElementById("userbox");
-  if (u && s){ u.hidden = false; u.querySelector(".ub-mail").textContent = s.email; u.querySelector("button").addEventListener("click", AUTH.sair); }
 });

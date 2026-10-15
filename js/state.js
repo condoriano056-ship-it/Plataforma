@@ -46,11 +46,7 @@ function normalize(j){
 }
 
 /* ---------- persistência no navegador ---------- */
-function save(){ try { localStorage.setItem(STORE, JSON.stringify(S)); } catch (e) {} }
-function loadStore(){
-  try { const j = JSON.parse(localStorage.getItem(STORE) || "null"); if (j && j.cliente) return j; } catch (e) {}
-  return null;
-}
+function save(){ if (typeof projSalvar === "function") projSalvar(); }      // cada estudo é guardado na biblioteca (projetos.js)
 let _saveT = 0;
 function touch(){                      // chame depois de qualquer alteração no projeto
   clearTimeout(_saveT); _saveT = setTimeout(save, 300);

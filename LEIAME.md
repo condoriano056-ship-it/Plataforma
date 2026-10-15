@@ -53,3 +53,19 @@ Para ativar:
 4. **Configurações do projeto → Geral → Chave de API da Web**: copie e cole em `js/auth-config.js`.
 5. **Authentication → Configurações → Domínios autorizados**: inclua o endereço do GitHub Pages (usuario.github.io).
 Lembre: o login controla o acesso à tela; o código-fonte do repositório público continua visível. Repositório privado se precisar esconder o código.
+
+## Estrutura da plataforma
+- Menu lateral: **Boas-vindas** (lista dos estudos) e **Estudo atual** (Cadastro, Dados da Concessionária, Dados da instalação, Ordem de ajuste, Coordenograma).
+- Os estudos ficam guardados no navegador (chave `esi.estudos.v1`): criar, abrir, duplicar, finalizar e excluir pela aba Boas-vindas. A plataforma sempre abre em Boas-vindas.
+- Telas em coluna única, centralizadas.
+
+## Módulos
+`js/modulos.js` define os módulos (Estudo de proteção, Baixa tensão, Média tensão, Análise tarifária, SPDA). A tela **Início** mostra os cartões de cada módulo; o menu lateral tem um grupo por módulo. Só o Estudo de proteção está pronto; os demais mostram "Em desenvolvimento". Para criar um módulo novo, acrescente um item em `MODULOS`.
+
+## Módulo SPDA (RaioCalc embutido)
+
+- O módulo **SPDA** abre a página `spda/index.html` dentro da plataforma (análise de risco NBR 5419-2:2026 e estratificação do solo NBR 7117).
+- É um **arquivo único** (HTML, JS, CSS e imagens embutidos): abre por duplo clique, sem servidor e sem internet.
+- Os dados (análises e clientes) ficam no `localStorage` do navegador, nas chaves `raiocalc.analises` e `raiocalc.clientes`.
+- O código-fonte está em `D:\Documentos\Claudinho\site\raiocalc`. Para atualizar: `npm run build` (o `vite.config.ts` já gera arquivo único) e copie `dist/index.html` para `spda/index.html`.
+- **Atenção:** `spda/index.html` contém a Tabela F.1 da ABNT (NG por município), licenciada só para uso pessoal. Não publique essa pasta (GitHub, e-mail, clientes) sem autorização da ABNT.
